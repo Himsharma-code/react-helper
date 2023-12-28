@@ -56,6 +56,7 @@ const ReactImageCrop: React.FC = () => {
     if (aspect) {
       const { width, height } = e.currentTarget;
       setCrop(centerAspectCrop(width, height, aspect));
+      setAspect(undefined);
     }
   };
 
