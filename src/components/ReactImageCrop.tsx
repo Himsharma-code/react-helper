@@ -107,7 +107,7 @@ const ReactImageCrop: React.FC = () => {
           type="file"
           accept="image/*"
           onChange={onSelectFile}
-          className="rounded my-4 py-2 px-4 bg-gray-800 text-white border border-gray-600 focus:outline-none focus:border-blue-500"
+          className="rounded w-full my-4 py-2 px-4 bg-gray-800 text-white border border-gray-600 focus:outline-none focus:border-blue-500"
         />
 
         <div className="w-full mb-2">
@@ -143,14 +143,14 @@ const ReactImageCrop: React.FC = () => {
             onChange={(updatedCrop) => setCrop(updatedCrop)}
             onComplete={(c) => setCompletedCrop(c)}
             aspect={aspect}
-            className="mb-4"
+            className="mb-4 w-full"
           >
             <img
               ref={imgRef}
               alt="Crop me"
               src={imgSrc}
               style={{ transform: `scale(${scale}) rotate(${rotate}deg)` }}
-              className="max-w-full"
+              className="w-full"
               onLoad={onImageLoad}
             />
           </ReactCrop>
