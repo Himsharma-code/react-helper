@@ -66,17 +66,24 @@ const ReactDropzone = () => {
   const [files, setFiles] = useState<FileWithPreview[]>([]);
 
   const onDrop = (acceptedFiles: FileWithPreview[]) => {
-    setFiles(
-      acceptedFiles.map((file) =>
+    setFiles([
+      ...acceptedFiles.map((file) =>
         Object.assign(file, {
           preview: URL.createObjectURL(file),
         })
-      )
-    );
+      ),
+      ...files,
+    ]);
   };
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    accept: {},
+    accept: {
+      "application/*": [".pdf", ".zip"],
+      "image/*": [".jpeg", ".png", ".gif", ".webp"],
+      "audio/*": [".mpeg", ".wav"],
+      "video/*": [".mp4", ".mov", ".webm"],
+      "text/html": [".html"],
+    },
     onDrop,
   });
 
@@ -97,7 +104,7 @@ const ReactDropzone = () => {
           </p>
         )}
       </div>
-      <div className="mt-4">
+      <div className="mt-4 max-h-[calc(100vh_-_325px)] overflow-auto">
         {files.map((file, index) => (
           <div
             key={file.name}
